@@ -31,6 +31,10 @@ body {
   color: #ffffff;
 }
 
+h1 {
+  margin: 0;
+}
+
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -51,6 +55,16 @@ body {
   align-items: flex-end;
 }
 
+.header-actions .primary {
+  text-decoration: none;
+  background: #f6c85f;
+  color: #0a355c;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-align: center;
+}
+
 .hint {
   font-size: 0.8rem;
   opacity: 0.9;
@@ -60,6 +74,83 @@ main {
   padding: 2rem 3rem 3rem;
   display: grid;
   gap: 2rem;
+}
+
+.overview {
+  display: grid;
+  gap: 2rem;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card,
+.snapshot-card {
+  background: var(--card);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(15, 29, 72, 0.08);
+}
+
+.stat-card.highlight {
+  border: 1px solid rgba(246, 200, 95, 0.6);
+  background: linear-gradient(135deg, rgba(246, 200, 95, 0.15), rgba(255, 255, 255, 0.9));
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  margin: 0.4rem 0;
+  font-weight: 700;
+}
+
+.stat-meta {
+  margin: 0;
+}
+
+.snapshot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.snapshot-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.snapshot-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+}
+
+.snapshot-time {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.snapshot-details {
+  display: grid;
+  gap: 0.25rem;
 }
 
 .card {
@@ -131,6 +222,14 @@ button.secondary {
   background: #f1f4f8;
   border: 1px solid var(--border);
   color: var(--text);
+}
+
+a.primary {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
 }
 
 a.secondary {
@@ -281,6 +380,11 @@ a.secondary {
   }
 
   .header-actions {
+    align-items: flex-start;
+  }
+
+  .snapshot-header {
+    flex-direction: column;
     align-items: flex-start;
   }
 }

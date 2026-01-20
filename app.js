@@ -10,6 +10,12 @@ const notificationList = document.querySelector("#notification-list");
 const addFieldButton = document.querySelector("#add-field");
 const fieldList = document.querySelector("#field-list");
 const clearButton = document.querySelector("#clear-data");
+const statTotal = document.querySelector("#stat-total");
+const statToday = document.querySelector("#stat-today");
+const statProgress = document.querySelector("#stat-progress");
+const statCompleted = document.querySelector("#stat-completed");
+const nextJobBadge = document.querySelector("#next-job");
+const upcomingList = document.querySelector("#upcoming-list");
 
 let deferredPrompt;
 
@@ -52,6 +58,67 @@ const formatDateTime = (date, time) => {
   return formatted.toLocaleString(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
+  });
+};
+
+const getDateKey = (date) => {
+  if (!date) return "";
+  const normalized = new Date(date);
+  if (Number.isNaN(normalized.getTime())) return "";
+  return normalized.toISOString().split("T")[0];
+};
+
+const formatTime = (date, time) => {
+  if (!date || !time) return "";
+  const formatted = new Date(`${date}T${time}`);
+  return formatted.toLocaleTimeString(undefined, { timeStyle: "short" });
+};
+
+const renderOverview = () => {
+  if (!statTotal || !statToday || !statProgress || !statCompleted) return;
+  const jobs = loadJobs();
+  const todayKey = getDateKey(new Date());
+  const upcoming = jobs
+    .filter((job) => job.status !== "cancelled" && job.status !== "completed")
+    .sort((a, b) => {
+      const aTime = new Date(`${a.date}T${a.time}`).getTime();
+      const bTime = new Date(`${b.date}T${b.time}`).getTime();
+      return aTime - bTime;
+    });
+
+  statTotal.textContent = jobs.length;
+  statToday.textContent = jobs.filter((job) => getDateKey(job.date) === todayKey).length;
+  statProgress.textContent = jobs.filter((job) => job.status === "in-progress").length;
+  statCompleted.textContent = jobs.filter((job) => job.status === "completed").length;
+
+  if (nextJobBadge && upcoming.length) {
+    nextJobBadge.textContent = `Next: ${formatDateTime(upcoming[0].date, upcoming[0].time)}`;
+  } else if (nextJobBadge) {
+    nextJobBadge.textContent = "No upcoming jobs";
+  }
+
+  if (!upcomingList) return;
+  upcomingList.innerHTML = "";
+  const limited = upcoming.slice(0, 4);
+  if (!limited.length) {
+    const empty = document.createElement("li");
+    empty.className = "muted";
+    empty.textContent = "No upcoming jobs. Add a new booking to populate the queue.";
+    upcomingList.appendChild(empty);
+    return;
+  }
+
+  limited.forEach((job) => {
+    const item = document.createElement("li");
+    item.className = "snapshot-item";
+    item.innerHTML = `
+      <span class="snapshot-time">${formatTime(job.date, job.time)}</span>
+      <div class="snapshot-details">
+        <strong>${job.client}</strong>
+        <span class="muted">${job.address}</span>
+      </div>
+    `;
+    upcomingList.appendChild(item);
   });
 };
 
@@ -100,6 +167,7 @@ const renderJobs = () => {
     empty.className = "muted";
     empty.textContent = "No jobs match your filters yet.";
     jobList.appendChild(empty);
+    renderOverview();
     return;
   }
 
@@ -185,6 +253,7 @@ const renderJobs = () => {
     card.append(header, meta, notes, custom, actions);
     jobList.appendChild(card);
   });
+  renderOverview();
 };
 
 const collectCustomFields = () => {
@@ -281,4 +350,5 @@ if ("serviceWorker" in navigator) {
 
 renderJobs();
 renderNotifications();
+renderOverview();
 addFieldRow();
