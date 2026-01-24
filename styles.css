@@ -1,0 +1,390 @@
+:root {
+  color-scheme: light;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --primary: #0f4c81;
+  --primary-dark: #0a355c;
+  --accent: #f6c85f;
+  --text: #1c2333;
+  --muted: #5c6470;
+  --border: #e0e6ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+  background: linear-gradient(135deg, #0f4c81, #1b6bb1);
+  color: #ffffff;
+}
+
+h1 {
+  margin: 0;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.subtitle {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  max-width: 30rem;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.header-actions .primary {
+  text-decoration: none;
+  background: #f6c85f;
+  color: #0a355c;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.hint {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+main {
+  padding: 2rem 3rem 3rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.overview {
+  display: grid;
+  gap: 2rem;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card,
+.snapshot-card {
+  background: var(--card);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(15, 29, 72, 0.08);
+}
+
+.stat-card.highlight {
+  border: 1px solid rgba(246, 200, 95, 0.6);
+  background: linear-gradient(135deg, rgba(246, 200, 95, 0.15), rgba(255, 255, 255, 0.9));
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  margin: 0.4rem 0;
+  font-weight: 700;
+}
+
+.stat-meta {
+  margin: 0;
+}
+
+.snapshot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.snapshot-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.snapshot-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+}
+
+.snapshot-time {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.snapshot-details {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.card {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 14px 40px rgba(15, 29, 72, 0.08);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+input,
+select,
+textarea {
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--accent);
+  color: var(--primary-dark);
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: inherit;
+}
+
+.card button.secondary,
+.card a.secondary {
+  background: #f1f4f8;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+a.primary {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+a.secondary {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.job-card {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.job-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.badge {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge.scheduled {
+  background: rgba(15, 76, 129, 0.1);
+  color: #0f4c81;
+}
+
+.badge.in-progress {
+  background: rgba(246, 200, 95, 0.2);
+  color: #8c5b00;
+}
+
+.badge.completed {
+  background: rgba(72, 187, 120, 0.15);
+  color: #1f6a3a;
+}
+
+.badge.cancelled {
+  background: rgba(248, 113, 113, 0.2);
+  color: #b91c1c;
+}
+
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.job-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.notification-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.notification {
+  background: #f1f5f9;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem 3rem;
+  color: var(--muted);
+}
+
+.custom-fields {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.custom-fields__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.field-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .app-header,
+  main,
+  .app-footer {
+    padding: 1.5rem;
+  }
+
+  .job-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    align-items: flex-start;
+  }
+
+  .snapshot-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

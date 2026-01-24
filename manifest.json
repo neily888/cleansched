@@ -1,0 +1,16 @@
+{
+  "name": "CleanSched Internal",
+  "short_name": "CleanSched",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f6fb",
+  "theme_color": "#0f4c81",
+  "description": "Internal PWA for scheduling cleaning jobs.",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
